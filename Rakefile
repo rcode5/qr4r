@@ -12,4 +12,6 @@ task :test do
   end
 end
 
-  
+task :build do
+  puts `gem build qr4r.gemspec`  
+end

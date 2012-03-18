@@ -14,8 +14,8 @@ module Qr4r
       end
     end
     MojoMagick::convert do |c|
-      d = data.pack('C'*data.size.to_i)
-      c.blob(data.pack(d, :format => :rgb, :depth => 8, :size => ("%dx%d" % [qr.modules.size, qr.modules.size])))
+      d = data.pack 'C'*data.size
+      c.blob(d, :format => :rgb, :depth => 8, :size => ("%dx%d" % [qr.modules.size, qr.modules.size]))
       c.file outfile
     end
   end

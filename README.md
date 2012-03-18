@@ -1,6 +1,6 @@
 # QR Encoding via Ruby - with PNG output
 
-Leveraging RQRCode and mojo_magick, we've built a very thin gem that generates QR codes in a png file
+Leveraging [rqrcode](http://whomwah.github.com/rqrcode/) and [mojo_magick](http://github.com/2rye/mojo_magick), we've built a very thin gem that generates QR codes in a png file
 
 # Include in your project
 
@@ -18,6 +18,7 @@ To use it:
 
 *input_string* and *output_file_path* should be strings.  Size should be an integer from 1 - 10.  The final output size is square and will be 33 * size pixels.  e.g.  if size = 4, the image will be 132x132.  Default size is 3 (images are 99x99 pixels).
 
+NOTE: strings to be encoded are currently limited to 34 characters
 To encode the string 'qr codes are the new hotness' like this:
   
     string_to_encode = 'qr codes are the new hotness'

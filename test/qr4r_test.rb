@@ -25,4 +25,8 @@ class Qr4rTest < Test::Unit::TestCase
     assert r[:width] == 4 * 33
   end
 
+  def test_a_long_string
+    f = Tempfile.new(['qr4r','.png'])
+    Qr4r::encode('this string should also be encodable. don\'t ya think', f.path, 4)
+  end
 end

@@ -2,8 +2,8 @@ require 'rqrcode'
 require 'mojo_magick'
 module Qr4r
   # size should indicate dot pixel size, size of 3 makes black pixels of 3x3
-  def self.encode(str, outfile, size = 3)
-    qr = RQRCode::QRCode.new(str)
+  def self.encode(str, outfile, *opts)
+    qr = RQRCode::QRCode.new(str, opts)
     data = []
     qr.modules.each_index do |x|
       qr.modules.each_index do |y|
@@ -17,11 +17,6 @@ module Qr4r
     MojoMagick::convert do |c|
       d = data.pack 'C'*data.size
       c.blob(d, :format => :rgb, :depth => 8, :size => ("%dx%d" % [qr.modules.size, qr.modules.size]))
-      c.file outfile
-    end
-    MojoMagick::convert do |c| 
-      c.file outfile
-      c.scale "%dx%d" % [qr.modules.size, qr.modules.size].map{|s| s*size}
       c.file outfile
     end
   end

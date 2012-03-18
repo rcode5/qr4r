@@ -10,8 +10,8 @@ class Qr4rTest < Test::Unit::TestCase
     # assert that it worked
     assert File.exists?(f.path)
     r = MojoMagick::get_image_size(f.path)
-    assert r[:height] == 25
-    assert r[:width] == 25
+    assert r[:height] == 25 * 3
+    assert r[:width] == 25 * 3
   end
 
   def test_encode_with_size
@@ -21,8 +21,19 @@ class Qr4rTest < Test::Unit::TestCase
     # assert that it worked
     assert File.exists?(f)
     r = MojoMagick::get_image_size(f.path)
-    assert r[:height] == 33
-    assert r[:width] == 33
+    assert r[:height] == 33 * 3
+    assert r[:width] == 33 * 3
+  end
+
+  def test_encode_with_pixel_size
+    # do something
+    f = Tempfile.new(['qr4r','.png'])
+    Qr4r::encode('whatever yo', f.path, :pixel_size => 5)
+    # assert that it worked
+    assert File.exists?(f)
+    r = MojoMagick::get_image_size(f.path)
+    assert r[:height] == 25 * 5
+    assert r[:width] == 25 * 5
   end
 
   def test_encode_with_size_and_level
@@ -32,8 +43,8 @@ class Qr4rTest < Test::Unit::TestCase
     # assert that it worked
     assert File.exists?(f)
     r = MojoMagick::get_image_size(f.path)
-    assert r[:height] == 33
-    assert r[:width] == 33
+    assert r[:height] == 33 * 3
+    assert r[:width] == 33 * 3
   end
 
   def test_a_long_string_with_size_thats_too_small
@@ -50,11 +61,20 @@ class Qr4rTest < Test::Unit::TestCase
   def test_a_long_string_with_size_thats_right
     f = Tempfile.new(['qr4r','.png'])
     Qr4r::encode('this string should also be encodable. don\'t ya think', f.path, :size => 10)
+    assert File.exists?(f)
+    r = MojoMagick::get_image_size(f.path)
+    assert r[:height] == 57 * 3
+    assert r[:width] == 57 * 3
   end
 
   def test_a_long_string_without_size
     f = Tempfile.new(['qr4r','.png'])
-    Qr4r::encode('this string should also be encodable. don\'t ya think', f.path, :size => 10)
+    Qr4r::encode('this string should also be encodable. don\'t ya think', f.path)
+    assert File.exists?(f)
+    r = MojoMagick::get_image_size(f.path)
+    assert r[:height] = 41 * 3
+    assert r[:width] = 41 * 3
+
   end
 
   def test_compute_size

@@ -2,6 +2,8 @@ require 'rqrcode'
 require 'mojo_magick'
 module Qr4r
 
+  # params we use
+  #   pixel_size  - size of each dot, default = 3
   # params we pass to QRCode include :size and :level
   #   size   - the size of the qrcode (default 4)
   #   level  - the error correction level, can be:
@@ -25,8 +27,12 @@ module Qr4r
 
   def self.encode(str, outfile, *rest)
     opts = rest[0] if rest && rest.length > 0
-    if !opts || (opts && !opts[:size])
-      opts = {}.merge(opts || {}).merge({:size => compute_size(str)})
+    opts = opts || {} 
+    if !opts[:size]
+      opts.merge!({:size => compute_size(str)})
+    end
+    if !opts[:pixel_size]
+      opts.merge!({:pixel_size => 3})
     end
     qr = RQRCode::QRCode.new(str, opts)
     data = []
@@ -43,6 +49,14 @@ module Qr4r
       d = data.pack 'C'*data.size
       c.blob(d, :format => :rgb, :depth => 8, :size => ("%dx%d" % [qr.modules.size, qr.modules.size]))
       c.file outfile
+    end
+    if opts[:pixel_size]
+      MojoMagick::convert do |c|
+        wd = qr.modules.size * opts[:pixel_size]
+        c.file outfile
+        c.scale "%dx%d" % [ wd, wd ]
+        c.file outfile
+      end
     end
   end
 

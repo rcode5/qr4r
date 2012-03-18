@@ -15,6 +15,6 @@ In your code, add
 To use it
    
     string_to_encode = 'qr codes are the new hotness'
-    QR4R::encode(string_to_encode, 'qrcode.out.png')  
+    Qr4r::encode(string_to_encode, 'qrcode.out.png')  
 
 

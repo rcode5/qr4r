@@ -1,0 +1,16 @@
+PATH
+  remote: /projects/mojo_magick
+  specs:
+    mojo_magick (0.4.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    rqrcode (0.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  mojo_magick!
+  rqrcode

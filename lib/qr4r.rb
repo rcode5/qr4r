@@ -48,15 +48,16 @@ module Qr4r
     MojoMagick::convert do |c|
       d = data.pack 'C'*data.size
       c.blob(d, :format => :rgb, :depth => 8, :size => ("%dx%d" % [qr.modules.size, qr.modules.size]))
-      c.file outfile
-    end
-    if opts[:pixel_size]
-      MojoMagick::convert do |c|
+      if opts[:pixel_size]
         wd = qr.modules.size * opts[:pixel_size].to_i
-        c.file outfile
         c.scale "%dx%d" % [ wd, wd ]
-        c.file outfile
       end
+      if opts[:border]
+        border = opts[:border].to_i
+        c.bordercolor '"#ffffff"'
+        c.border '%dx%d' % [ border, border ]
+      end
+      c.file outfile
     end
   end
 

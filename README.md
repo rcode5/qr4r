@@ -18,19 +18,41 @@ To use it:
 
 *input_string* and *output_file_path* should be strings.  Options should a list of hash options keyed by symbols.  Possible options are:
  
- * :pixel_size  - this is used to specify the size of each 'black' dot in the qrcode.  Default = 3
- * :size  - this is used by the qr code generation.  A lower number means a smaller overall image.  But it also means that you can encode fewer characters.  This is computeed for you by default based on the input string size.  You should not need to adjust it.
+ * :pixel_size  - specify the size of each 'black' dot in the qrcode.  Default = 3
+ * :border - specify the number of pixels to use for a white border around the outside.  Default = 0
+ * :size  - used by the qr code generation.  A lower number means a smaller overall image.  But it also means that you can encode fewer characters.  This is computeed for you by default based on the input string size.  You should not need to adjust it.
 
 To encode the string 'qr codes are the new hotness' like this:
-  
-    string_to_encode = 'qr codes are the new hotness'
-    Qr4r::encode(string_to_encode, 'qrcode.out.png')  
 
-Not happy with the default size (99px x 99px)? Adjust the size with the 3rd argument to encode
+    require 'qr4r'
+    s = 'qr codes are the new hotness'
+    fname = s.gsub(/\s+/,"_") + ".qr.png"
+    Qr4r::encode(s, fname)
 
-    # the following produces an image who's size is 165px x 165px
-    string_to_encode = 'big qr codes are the new hotness'
-    Qr4r::encode(string_to_encode, 'qrcode.out.png', :pixel_size => 5)  
+Make a bigger QRCode
+
+    s = 'big qr codes are the new hotness'
+    fname = s.gsub(/\s+/,"_") + ".qr.png"
+    Qr4r::encode(s, fname, :pixel_size => 5)
+
+Add a fat border
+
+    s = 'big qr codes are the new hotness with a border'
+    fname = s.gsub(/\s+/,"_") + ".qr.png"
+    Qr4r::encode(s, fname, :border => 20)
 
 
+## Authors
 
+Original author: [Jon Rogers](http://github.com/bunnymatic) [at 2rye](http://2rye.com)
+
+Thanks to [Duncan Robertson](http://whomwah.github.com/rqrcode/) for writing rQRCode
+
+## Contributing
+* Fork the project
+* Send a pull request
+* Don't bump the version or modify the gemspec. I'll do that when I merge in your mods and release a new version.
+
+## Copyright
+
+MIT Licence (http://www.opensource.org/licenses/mit-license.html)

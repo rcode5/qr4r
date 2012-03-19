@@ -13,5 +13,6 @@ task :test do
 end
 
 task :build do
+  `rm qr4r-*.gem`
   puts `gem build qr4r.gemspec`  
 end

@@ -52,7 +52,7 @@ module Qr4r
     end
     if opts[:pixel_size]
       MojoMagick::convert do |c|
-        wd = qr.modules.size * opts[:pixel_size]
+        wd = qr.modules.size * opts[:pixel_size].to_i
         c.file outfile
         c.scale "%dx%d" % [ wd, wd ]
         c.file outfile

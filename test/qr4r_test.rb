@@ -36,6 +36,17 @@ class Qr4rTest < Test::Unit::TestCase
     assert r[:width] == 25 * 5
   end
 
+  def test_encode_with_pixel_size_as_string
+    # do something
+    f = Tempfile.new(['qr4r','.png'])
+    Qr4r::encode('whatever yo', f.path, :pixel_size => '5')
+    # assert that it worked
+    assert File.exists?(f)
+    r = MojoMagick::get_image_size(f.path)
+    assert r[:height] == 25 * 5
+    assert r[:width] == 25 * 5
+  end
+
   def test_encode_with_size_and_level
     # do something
     f = Tempfile.new(['qr4r','.png'])

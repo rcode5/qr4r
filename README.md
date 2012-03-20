@@ -12,6 +12,8 @@ In your code, add
     
     require 'qr4r'
 
+NOTE: you'll need to have ImageMagick installed wherever you plan to run this.  The gem depends on [mojo_magick](http://github.com/2rye/mojo_magick) which uses ImageMagick commandline operations to build the final PNG image.
+
 To use it:
 
     Qr4r::encode(input_string, output_file_path, options)
@@ -50,6 +52,7 @@ Thanks to [Duncan Robertson](http://whomwah.github.com/rqrcode/) for writing rQR
 
 ## Contributing
 * Fork the project
+* Write a test for your new feature/method
 * Send a pull request
 * Don't bump the version or modify the gemspec. I'll do that when I merge in your mods and release a new version.
 

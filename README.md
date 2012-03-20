@@ -22,7 +22,6 @@ To use it:
  
  * :pixel_size  - specify the size of each 'black' dot in the qrcode.  Default = 3
  * :border - specify the number of pixels to use for a white border around the outside.  Default = 0
- * :size  - used by the qr code generation.  A lower number means a smaller overall image.  But it also means that you can encode fewer characters.  This is computeed for you by default based on the input string size.  You should not need to adjust it.
 
 To encode the string 'qr codes are the new hotness' like this:
 
@@ -43,6 +42,7 @@ Add a fat border
     fname = s.gsub(/\s+/,"_") + ".qr.png"
     Qr4r::encode(s, fname, :border => 20)
 
+NOTE: The current implementation or rQRCode (and therefore this wrapper library) supports encoding up to 119 characters.  Beyond that, you'll need something a bit more sophisticated.
 
 ## Authors
 

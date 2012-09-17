@@ -1,6 +1,6 @@
 # QR Encoding via Ruby - with PNG output
 
-Leveraging [rqrcode](http://whomwah.github.com/rqrcode/) and [mojo_magick](http://github.com/2rye/mojo_magick), we've built a very thin gem that generates QR codes in a png file
+Leveraging [rqrcode](http://whomwah.github.com/rqrcode/) and [mojo_magick](http://github.com/rcode5/mojo_magick), we've built a very thin gem that generates QR codes in a png file
 
 # Include in your project
 
@@ -12,7 +12,7 @@ In your code, add
     
     require 'qr4r'
 
-NOTE: you'll need to have ImageMagick installed wherever you plan to run this.  The gem depends on [mojo_magick](http://github.com/2rye/mojo_magick) which uses ImageMagick commandline operations to build the final PNG image.
+NOTE: you'll need to have ImageMagick installed wherever you plan to run this.  The gem depends on [mojo_magick](http://github.com/rcode5/mojo_magick) which uses ImageMagick commandline operations to build the final PNG image.
 
 To use it:
 
@@ -46,7 +46,7 @@ NOTE: The current implementation or rQRCode (and therefore this wrapper library)
 
 ## Authors
 
-Original author: [Jon Rogers](http://github.com/bunnymatic) [at 2rye](http://2rye.com)
+Original author: [Jon Rogers](http://github.com/bunnymatic) [at rcode5](http://www.rcode5.com)
 
 Thanks to [Duncan Robertson](http://whomwah.github.com/rqrcode/) for writing rQRCode
 

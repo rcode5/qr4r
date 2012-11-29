@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.version     = Qr4r::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jon Rogers"]
-  s.email       = ["r@2rye.com"]
-  s.homepage    = "http://github.com/2rye/qr4r"
+  s.email       = ["jon@rcode5.com"]
+  s.homepage    = "http://github.com/rcode5/qr4r"
   s.summary     = "qr4r-#{Qr4r::VERSION}"
   s.description = %q{QR PNG Generator for Ruby. Leveraging RQRCode and MojoMagick modules}
 

@@ -44,6 +44,10 @@ Add a fat border
 
 NOTE: The current implementation or rQRCode (and therefore this wrapper library) supports encoding up to 119 characters.  Beyond that, you'll need something a bit more sophisticated.
 
+## Wanna try it out?
+
+Check out the Sinatra test app here: https://github.com/rcode5/qr4r_test_app
+
 ## Authors
 
 Original author: [Jon Rogers](http://github.com/bunnymatic) [at rcode5](http://www.rcode5.com)

@@ -44,6 +44,14 @@ Add a fat border
 
 NOTE: The current implementation or rQRCode (and therefore this wrapper library) supports encoding up to 119 characters.  Beyond that, you'll need something a bit more sophisticated.
 
+## Versions/Changelog
+
+#### 0.4.0
+
+* Moved to new mojo_magick gem
+* no longer ruby 1.8.7 compatible
+* fixed issue with border coming out black
+
 ## Authors
 
 Original author: [Jon Rogers](http://github.com/bunnymatic) [at rcode5](http://www.rcode5.com)

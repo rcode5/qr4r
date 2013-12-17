@@ -45,6 +45,7 @@ module Qr4r
         end
       end
     end
+    puts 'mojo', opts
     MojoMagick::convert do |c|
       d = data.pack 'C'*data.size
       c.blob(d, :format => :rgb, :depth => 8, :size => ("%dx%d" % [qr.modules.size, qr.modules.size]))
@@ -54,7 +55,7 @@ module Qr4r
       end
       if opts[:border]
         border = opts[:border].to_i
-        c.bordercolor '"#ffffff"'
+        c.bordercolor 'white'
         c.border '%dx%d' % [ border, border ]
       end
       c.file outfile

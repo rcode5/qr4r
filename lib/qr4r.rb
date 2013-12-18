@@ -25,6 +25,22 @@ module Qr4r
   #   size = 9, max string length = 98
   #   size = 10, max string length = 119
 
+  def self.build_qr_code(str,opts)
+    qr = RQRCode::QRCode.new(str, opts)
+    [].tap do |data|
+      qr.modules.each_index do |x|
+        qr.modules.each_index do |y|
+          if qr.dark?(x,y)
+            3.times { data << 0 }
+          else
+            3.times { data << 255 }
+          end
+        end
+      end
+    end
+  end
+
+
   def self.encode(str, outfile, *rest)
     opts = rest[0] if rest && rest.length > 0
     opts = opts || {} 
@@ -34,17 +50,7 @@ module Qr4r
     if !opts[:pixel_size]
       opts.merge!({:pixel_size => 3})
     end
-    qr = RQRCode::QRCode.new(str, opts)
-    data = []
-    qr.modules.each_index do |x|
-      qr.modules.each_index do |y|
-        if qr.dark?(x,y)
-          3.times { data << 0 }
-        else
-          3.times { data << 255 }
-        end
-      end
-    end
+    data = build_qr_code(str, opts)
     puts 'mojo', opts
     MojoMagick::convert do |c|
       d = data.pack 'C'*data.size

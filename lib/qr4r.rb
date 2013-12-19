@@ -25,58 +25,66 @@ module Qr4r
   #   size = 9, max string length = 98
   #   size = 10, max string length = 119
 
-  def self.encode(str, outfile, *rest)
-    opts = rest[0] if rest && rest.length > 0
-    opts = opts || {} 
-    if !opts[:size]
-      opts.merge!({:size => compute_size(str)})
-    end
-    if !opts[:pixel_size]
-      opts.merge!({:pixel_size => 3})
-    end
-    qr = RQRCode::QRCode.new(str, opts)
-    data = []
-    qr.modules.each_index do |x|
-      qr.modules.each_index do |y|
-        if qr.dark?(x,y)
-          3.times { data << 0 }
-        else
-          3.times { data << 255 }
-        end
-      end
-    end
-    MojoMagick::convert do |c|
-      d = data.pack 'C'*data.size
-      c.blob(d, :format => :rgb, :depth => 8, :size => ("%dx%d" % [qr.modules.size, qr.modules.size]))
-      if opts[:pixel_size]
-        wd = qr.modules.size * opts[:pixel_size].to_i
-        c.scale "%dx%d" % [ wd, wd ]
-      end
-      if opts[:border]
-        border = opts[:border].to_i
-        c.bordercolor '"#ffffff"'
-        c.border '%dx%d' % [ border, border ]
-      end
-      c.file outfile
-    end
-  end
-
-  private
   SIZE_RESTRICTIONS = [0, 7, 14, 24, 34, 44, 58, 64, 84, 98, 119] 
 
-  def self.compute_size(str)
-    slen = str.size
-    size = 4
-    ii = 0
-    while ii < SIZE_RESTRICTIONS.length do
-      if slen < SIZE_RESTRICTIONS[ii]
-        break
+  def self.encode(str, outfile, *rest)
+    opts = rest[0] if rest && rest.length > 0
+    opts ||= {} 
+    opts.merge!({:size => compute_size(str)}) unless opts[:size]
+    opts.merge!({:pixel_size => 3}) unless opts[:pixel_size]
+    qr, data = build_qr_code(str, opts)
+    create_image(qr,data,outfile,opts)
+  end
+
+  class << self
+    private
+    def build_qr_code(str,opts)
+      qr = RQRCode::QRCode.new(str, opts)
+      data = [].tap do |data|
+        qr.modules.each_index do |x|
+          qr.modules.each_index do |y|
+            if qr.dark?(x,y)
+              3.times { data << 0 }
+            else
+              3.times { data << 255 }
+            end
+          end
+        end
       end
-      ii+=1
+      [qr, data]
     end
-    if ii > 10
-      raise "Your string is too big for this encoder.  It should be less than #{SIZE_RESTRICTIONS.last} characters"
+
+    def create_image(qr, data, outfile, opts) 
+      MojoMagick::convert do |c|
+        d = data.pack 'C'*data.size
+        c.blob(d, :format => :rgb, :depth => 8, :size => ("%dx%d" % [qr.modules.size, qr.modules.size]))
+        if opts[:pixel_size]
+          wd = qr.modules.size * opts[:pixel_size].to_i
+          c.scale "%dx%d" % [ wd, wd ]
+        end
+        if opts[:border]
+          border = opts[:border].to_i
+          c.bordercolor 'white'
+          c.border '%dx%d' % [ border, border ]
+        end
+        c.file outfile
+      end
     end
-    return ii
+
+
+    def compute_size(str)
+      slen = str.size
+      ii = 0
+      while ii < SIZE_RESTRICTIONS.length do
+        if slen < SIZE_RESTRICTIONS[ii]
+          break
+        end
+        ii+=1
+      end
+      if ii > 10
+        raise "Your string is too big for this encoder.  It should be less than #{SIZE_RESTRICTIONS.last} characters"
+      end
+      return ii
+    end
   end
 end

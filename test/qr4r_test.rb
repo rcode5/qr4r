@@ -100,7 +100,7 @@ class Qr4rTest < Test::Unit::TestCase
   end
 
   def test_compute_size
-    test_sizes =   [ 7, 14, 24, 34, 44, 58, 64, 84, 98]
+    test_sizes = [ 7, 14, 24, 34, 44, 58, 64, 84, 98]
     test_sizes.each_with_index do |sz, idx|
       str = 'a'*(sz-1)
       assert Qr4r.send(:compute_size, str) == idx+1

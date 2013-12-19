@@ -1,14 +1,18 @@
 PATH
   remote: .
   specs:
-    qr4r (0.3.5)
+    qr4r (0.4.0)
       mojo_magick
       rqrcode
+
+PATH
+  remote: /projects/mojo_magick
+  specs:
+    mojo_magick (0.5.4)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    mojo_magick (0.5.4)
     rake (10.1.0)
     rqrcode (0.4.2)
 
@@ -16,5 +20,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  mojo_magick!
   qr4r!
   rake

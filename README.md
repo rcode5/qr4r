@@ -42,6 +42,8 @@ Add a fat border
     fname = s.gsub(/\s+/,"_") + ".qr.png"
     Qr4r::encode(s, fname, :border => 20)
 
+You can also checkout the [examples](https://github.com/rcode5/qr4r/tree/master/examples) folder for a little sample commandline script.
+
 NOTE: The current implementation or rQRCode (and therefore this wrapper library) supports encoding up to 119 characters.  Beyond that, you'll need something a bit more sophisticated.
 
 ## Wanna try it out?

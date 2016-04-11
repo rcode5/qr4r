@@ -8,9 +8,11 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    mojo_magick (0.5.4)
-    rake (10.1.0)
-    rqrcode (0.4.2)
+    chunky_png (1.3.5)
+    mojo_magick (0.5.6)
+    rake (11.1.2)
+    rqrcode (0.10.1)
+      chunky_png (~> 1.0)
 
 PLATFORMS
   ruby

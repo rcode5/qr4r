@@ -1,18 +1,12 @@
-require 'rubygems'
-task :default => :test
+require "rubygems"
+require "rake/testtask"
+task default: :test
 
-task 'default' => :test
-
-desc "Default: run tests"
-task :test do
-  require 'rake/runtest'
-  files = Dir.glob(File.join(File.dirname(__FILE__), 'test/*_test.rb'))
-  files.each do |f|
-    Rake.run_tests f
-  end
+Rake::TestTask.new do |task|
+  task.pattern = "test/*_test.rb"
 end
 
 task :build do
   `rm qr4r-*.gem`
-  puts `gem build qr4r.gemspec`  
+  puts `gem build qr4r.gemspec`
 end

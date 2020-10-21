@@ -1,0 +1,9 @@
+require:
+  - rubocop-performance
+
+inherit_from:
+  - ./.rubocop-common.yml      # copied from c5-conventions
+  - ./.rubocop-performance.yml # copied from c5-conventions
+
+AllCops:
+  TargetRubyVersion: 2.5

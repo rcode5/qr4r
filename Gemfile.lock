@@ -1,22 +1,50 @@
 PATH
   remote: .
   specs:
-    qr4r (0.4.0)
+    qr4r (0.6.0)
       mojo_magick
-      rqrcode
+      rqrcode_core
 
 GEM
   remote: https://rubygems.org/
   specs:
-    chunky_png (1.3.5)
-    mojo_magick (0.5.6)
-    rake (11.1.2)
-    rqrcode (0.10.1)
-      chunky_png (~> 1.0)
+    ast (2.4.1)
+    minitest (5.14.1)
+    mojo_magick (0.5.7)
+    parallel (1.19.2)
+    parser (2.7.2.0)
+      ast (~> 2.4.1)
+    rainbow (3.0.0)
+    rake (13.0.1)
+    regexp_parser (1.8.2)
+    rexml (3.2.4)
+    rqrcode_core (0.1.2)
+    rubocop (0.93.1)
+      parallel (~> 1.10)
+      parser (>= 2.7.1.5)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8)
+      rexml
+      rubocop-ast (>= 0.6.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 2.0)
+    rubocop-ast (0.8.0)
+      parser (>= 2.7.1.5)
+    rubocop-performance (1.8.1)
+      rubocop (>= 0.87.0)
+      rubocop-ast (>= 0.4.0)
+    ruby-progressbar (1.10.1)
+    unicode-display_width (1.7.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  minitest
   qr4r!
   rake
+  rubocop
+  rubocop-performance
+
+BUNDLED WITH
+   2.1.4

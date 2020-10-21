@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     qr4r (0.6.0)
-      mojo_magick
-      rqrcode_core
+      mojo_magick (~> 0.5)
+      rqrcode_core (~> 0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -40,11 +40,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  minitest
+  minitest (~> 5.14)
   qr4r!
-  rake
-  rubocop
-  rubocop-performance
+  rake (~> 13.0)
+  rubocop (~> 0.93)
+  rubocop-performance (~> 1.8)
 
 BUNDLED WITH
    2.1.4

@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     qr4r (0.6.0)
-      mojo_magick (~> 0.5)
+      mojo_magick (~> 0.6.5)
       rqrcode_core (~> 0.1)
 
 GEM
@@ -10,7 +10,7 @@ GEM
   specs:
     ast (2.4.2)
     minitest (5.14.4)
-    mojo_magick (0.6.4)
+    mojo_magick (0.6.5)
     parallel (1.20.1)
     parser (3.0.1.0)
       ast (~> 2.4.1)

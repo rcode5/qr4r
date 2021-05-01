@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   s.require_paths = ["lib"]
-  s.add_dependency("mojo_magick", "~> 0.5")
+  s.add_dependency("mojo_magick", "~> 0.6.5")
   s.add_dependency("rqrcode_core", "~> 0.1")
   s.add_development_dependency("minitest", "~> 5.14")
   s.add_development_dependency("rake", "~> 13.0")

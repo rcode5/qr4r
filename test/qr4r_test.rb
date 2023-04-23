@@ -31,8 +31,8 @@ class Qr4rTest < MiniTest::Test
     # assert that it worked
     assert File.exist?(f)
     r = MojoMagick.get_image_size(f.path)
-    assert r[:height] == 33 * 3 + 20
-    assert r[:width] == 33 * 3 + 20
+    assert r[:height] == (33 * 3) + 20
+    assert r[:width] == (33 * 3) + 20
   end
 
   def test_encode_with_pixel_size

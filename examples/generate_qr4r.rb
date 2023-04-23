@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
-
 require "qr4r"
 require "optparse"
-require "ostruct"
 
 class CmdlineOpts
   @opts = nil
@@ -11,8 +9,16 @@ class CmdlineOpts
 
   attr_reader :options
 
+  class Options
+    attr_accessor :format, :border, :pixel_size, :verbose
+
+    def to_h
+      { format: format, border: border, pixel_size: pixel_size, verbose: verbose }
+    end
+  end
+
   def initialize(args)
-    @options = OpenStruct.new
+    @options = Options.new
     @options.format = "gif"
     @options.border = 0
     @options.pixel_size = 10
@@ -46,8 +52,8 @@ class CmdlineOpts
               "Size for each qrcode pixel") do |px|
         @options.pixel_size = px.to_i
       end
-      opts.on("-v", "--[no-]verbose", "Be verbose") do |_v|
-        @options.verbose = V
+      opts.on("-v", "--[no-]verbose", "Be verbose") do |v|
+        @options.verbose = v
       end
 
       # No argument, shows at tail.  This will print an options summary.
@@ -82,5 +88,5 @@ else
     puts " and format #{options.format}"
   end
 
-  Qr4r.encode(to_encode, outfile, cmd_options.options.marshal_dump)
+  Qr4r.encode(to_encode, outfile, cmd_options.options.to_h)
 end

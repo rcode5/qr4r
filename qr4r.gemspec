@@ -16,13 +16,13 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "qr4r"
 
   s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   s.require_paths = ["lib"]
   s.add_dependency("mojo_magick", "~> 0.6.5")
-  s.add_dependency("rqrcode_core", "~> 0.1")
+  s.add_dependency("rqrcode_core", "~> 1.0")
   s.add_development_dependency("minitest", "~> 5.14")
   s.add_development_dependency("rake", "~> 13.0")
-  s.add_development_dependency("rubocop", "~> 0.93")
+  s.add_development_dependency("rubocop", "~> 1.0")
   s.add_development_dependency("rubocop-performance", "~> 1.8")
+  s.metadata["rubygems_mfa_required"] = "true"
 end

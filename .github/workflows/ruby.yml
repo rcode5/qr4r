@@ -11,15 +11,6 @@ on:
 jobs:
   ruby-test:
     runs-on: ubuntu-latest
-    env:
-    steps:
-      - name: Ruby setup
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-
-  lint:
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -28,6 +19,6 @@ jobs:
         with:
           bundler-cache: true
       - name: Lint
-        run: bundle exec rubocop --parallel
+        run: bundle exec rubocop
       - name: Test
-        run: bin/rake test
+        run: bundle exec rake test

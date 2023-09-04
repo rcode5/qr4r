@@ -18,11 +18,7 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   s.require_paths = ["lib"]
-  s.add_dependency("mojo_magick", "~> 0.6.5")
-  s.add_dependency("rqrcode_core", "~> 1.0")
-  s.add_development_dependency("minitest", "~> 5.14")
-  s.add_development_dependency("rake", "~> 13.0")
-  s.add_development_dependency("rubocop", "~> 1.0")
-  s.add_development_dependency("rubocop-performance", "~> 1.8")
+  s.add_dependency("mojo_magick", "~> 0.6.8")
+  s.add_dependency("rqrcode_core", "~> 1.2.0")
   s.metadata["rubygems_mfa_required"] = "true"
 end

@@ -83,7 +83,7 @@ else
 
   if options.verbose
     print "Encoding \"#{to_encode}\" to file #{outfile}"
-    print " with border #{options.border}"  if options.border.positive?
+    print " with border #{options.border}" if options.border.positive?
     print " and pixel_size #{options.pixel_size}"
     puts " and format #{options.format}"
   end

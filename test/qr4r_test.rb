@@ -1,7 +1,8 @@
 require "minitest/autorun"
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "init"))
 require "tempfile"
-class Qr4rTest < MiniTest::Test
+
+class Qr4rTest < Minitest::Test
   def test_encode
     # do something
     f = Tempfile.new(["qr4r", ".png"])

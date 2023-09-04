@@ -20,9 +20,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.add_dependency("mojo_magick", "~> 0.6.8")
   s.add_dependency("rqrcode_core", "~> 1.2.0")
-  s.add_development_dependency("minitest", "~> 5.x")
-  s.add_development_dependency("rake", "~> 13.0")
-  s.add_development_dependency("rubocop", "~> 1.x")
-  s.add_development_dependency("rubocop-performance", "~> 1.x")
   s.metadata["rubygems_mfa_required"] = "true"
 end
